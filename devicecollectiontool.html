@@ -23,23 +23,8 @@
             </center>
             <form method="post" action="index.html" >
                <center>
-                  <input type="text" id="search" placeholder="Search devices..." />
-		          <ul class="results" id="searchlist">
-			         <li class="listItem">
-                        <span>Xbox 360
-                           <div class="addButton"><a href=""></a></div>
-                        </span>
-                     </li>
-                     <li class="listItem">
-                        <span>iPhone 5
-                           <div class="addButton"><a href=""></a></div>
-                        </span>
-                     </li>
-                     <li class="listItem">
-                        <span>iPod Touch
-                           <div class="addButton"><a href=""></a></div>
-                        </span>
-                     </li>
+                  <input type="text" id="searchInput" onkeyup="$(this).result()" placeholder="Search devices..." />
+		          <ul class="results" id="searchList">
 		          </ul>
                </center>
 	        </form>
@@ -48,35 +33,15 @@
          <div id="right" style="float:right; width:49%;">
             <center>
                <h2>Your Devices</h2>
-               <ol id="devicelist">
-                  <li class="listItem">
-                     <span>
-                        <div class="linkButton"><a href=""></a></div>
-                        Xbox 360
-                        <div class="removeButton"><a href=""></a></div>
-                     </span>
-                  </li>
-                  <li class="listItem">
-                     <span>
-                        <div class="linkButton"><a href=""></a></div>
-                        iPhone 5
-                        <div class="removeButton"><a href=""></a></div>
-                     </span>
-                  </li>
-                  <li class="listItem">
-                     <span>
-                        <div class="linkButton"><a href=""></a></div>
-                        iPod Touch
-                        <div class="removeButton"><a href=""></a></div>
-                     </span>
-                  </li>
+               <ol id="deviceList">
                </ol>
             </center>
          </div>
       </div>
    </body>
    
-   <script src="apiscript.js"></script>
+   <script src="jquery-3.1.1.min.js"></script>
+   <script src="toolscripts.js"></script>
    <link href="toolstyle.css" rel="stylesheet">
 
 </html>
