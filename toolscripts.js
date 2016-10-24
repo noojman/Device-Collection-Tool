@@ -7,25 +7,20 @@ $.fn.result = function () {
 };
 
 $(document).ready(function () {
-   if (!localStorage.devices) {
-      localStorage.devices = JSON.stringify([]);
-   }
-
    /* fill list with existing data from client-sided storage */
-   /*
-   var devices = JSON.parse(localStorage["devices"]);
-   console.log(devices);
-   for (var i = 0; i < devices.length; i++) {
-      if (devices[i].url == "") {
-         addUnlinkedItem(devices[i].name);
+   var i, key;
+   for (i = 0; i < localStorage.length; i++)
+   {
+      key = localStorage.key(i);
+      if (JSON.parse(localStorage.getItem(key)).url == null)
+      {
+         addUnlinkedItemNoStorage(JSON.parse(localStorage.getItem(key)).name);
       }
-      else {
-         addLinkedItem(devices[i].name, devices[i].url);
+      else
+      {
+         addLinkedItemNoStorage(JSON.parse(localStorage.getItem(key)).name, JSON.parse(localStorage.getItem(key)).url);
       }
    }
-   */
-
-
 
    if (!navigator.onLine) {
       var input = document.getElementById("searchInput");
@@ -85,6 +80,48 @@ function search(li) {
    }
 }
 
+function addUnlinkedItemNoStorage(name) {
+   var ul, entry, span, div, a;
+   entry = document.createElement("li");
+   entry.setAttribute("class", "listItem");
+   entry.setAttribute("id", "deviceItem");
+   span = document.createElement("span");
+   span.innerHTML = name;
+   div = document.createElement("div");
+   div.setAttribute("class", "removeButton");
+   a = document.createElement("a");
+   a.onclick = function () {
+      removeItem(entry, name);
+   }
+   div.appendChild(a);
+   span.appendChild(div);
+   entry.appendChild(span);
+   ul = document.getElementById("deviceList");
+   ul.appendChild(entry);
+}
+
+function addLinkedItemNoStorage(name, url)
+{
+   var ul, entry, span, div, a;
+   entry = document.createElement("li");
+   entry.setAttribute("class", "listItem");
+   entry.setAttribute("id", "deviceItem");
+   span = document.createElement("span");
+   span.innerHTML = "<div class='linkButton'><a href=" + url + "></a></div>"
+      + name;
+   div = document.createElement("div");
+   div.setAttribute("class", "removeButton");
+   a = document.createElement("a");
+   a.onclick = function () {
+      removeItem(entry, name);
+   }
+   div.appendChild(a);
+   span.appendChild(div);
+   entry.appendChild(span);
+   ul = document.getElementById("deviceList");
+   ul.appendChild(entry);
+}
+
 function addUnlinkedItem(name) {
    if (localStorage.getItem(name) != null) {
       alert("You already own a(n) " + name + ".");
@@ -109,8 +146,8 @@ function addUnlinkedItem(name) {
       ul.appendChild(entry);
 
       /* add to client-sided storage */
-      var memEntry = { name: name, url: "" };
-      localStorage.setItem(name, memEntry);
+      var memEntry = { 'name': name, 'url': null };
+      localStorage.setItem(name, JSON.stringify(memEntry));
    }
 }
 
@@ -139,8 +176,8 @@ function addLinkedItem(name, url) {
       ul.appendChild(entry);
 
       /* add to client-sided storage */
-      var memEntry = { name: name, url: url };
-      localStorage.setItem(name, memEntry);
+      var memEntry = { 'name': name, 'url': url };
+      localStorage.setItem(name, JSON.stringify(memEntry));
    }
 }
 
