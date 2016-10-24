@@ -197,5 +197,4 @@ function clear()
       elem.remove();
       elem = document.getElementById("deviceItem");
    }
-   alert("Cleared device list!");
 }
