@@ -23,7 +23,7 @@
             </center>
             <form method="post" action="index.html" >
                <center>
-                  <input type="text" id="searchInput" onkeyup="$(this).result()" placeholder="Search devices..." />
+                  <input type="text" id="searchInput" onkeyup="$(this).result()" placeholder="Search devices or press [ENTER] to add..." />
 		          <ul class="results" id="searchList">
 		          </ul>
                </center>
@@ -41,6 +41,7 @@
    </body>
    
    <script src="jquery-3.1.1.min.js"></script>
+   <script src="indexeddb.js"></script>
    <script src="toolscripts.js"></script>
    <link href="toolstyle.css" rel="stylesheet">
 
