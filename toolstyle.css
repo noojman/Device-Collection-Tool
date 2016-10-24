@@ -99,10 +99,22 @@ input[type="text"]
    background-size: 15px;
    width: 80%;
    box-sizing: border-box;
-   border: 2px solid rgb(175, 175, 175);
+   border: 2px solid rgb(150, 150, 150);
    font: 14px Helvetica, Sans-Serif;
    padding: 10px 10px 10px 30px;
    margin: 10px 10px 10px 10px;
    display: block;
    position: relative;
+}
+
+.clearButton
+{
+    border: 2px solid rgb(125, 125, 125);
+    color: white;
+    background-color: rgb(150, 150, 150);
+    padding: 10px 15px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
